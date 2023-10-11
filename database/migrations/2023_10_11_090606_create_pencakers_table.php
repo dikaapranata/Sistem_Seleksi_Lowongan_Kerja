@@ -12,7 +12,18 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pencakers', function (Blueprint $table) {
-            $table->id();
+            $table->id('noktp');
+            $table->string('nama');
+            $table->string('password');
+            $table->boolean('jenis_kelamin'); // 0 = perempuan; 1 = pria
+            $table->string('tempat_lahir');
+            $table->date('tanggal_lahir');
+            $table->string('kota');
+            $table->string('email')->unique();
+            $table->string('no_telp');
+            $table->text('foto');
+            $table->date('tgl_daftar');
+            $table->text('file_ktp');
             $table->timestamps();
         });
     }
