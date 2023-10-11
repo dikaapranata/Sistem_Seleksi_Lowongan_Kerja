@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LokerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/loker', [LokerController::class, 'index'])->name('loker');
+Route::get('/loker/{loker:lokerid}', [LokerController::class, 'show'])->name('loker-show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
