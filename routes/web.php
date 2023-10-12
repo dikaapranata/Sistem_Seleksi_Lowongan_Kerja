@@ -20,7 +20,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/loker', [LokerController::class, 'index'])->name('loker');
-Route::get('/loker/{loker:lokerid}', [LokerController::class, 'show'])->name('loker-show');
+Route::get('/loker/{loker:idloker}', [LokerController::class, 'show'])->name('loker.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
