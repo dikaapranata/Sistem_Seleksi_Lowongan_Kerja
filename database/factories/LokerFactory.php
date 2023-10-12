@@ -5,7 +5,7 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\loker>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Loker>
  */
 class LokerFactory extends Factory
 {
@@ -17,7 +17,7 @@ class LokerFactory extends Factory
     public function definition(): array
     {
         return [
-            'idperusahaan' => fake()->randomNumber(),
+            'idperusahaan' => fake()->name(),
             'nama' => fake()->name(),
             'tipe' => fake()->word(),
             'usia_min' => fake()->numberBetween(17,20),

@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('no_telp_cp');
             $table->date('tgl_update');
             $table->date('tgl_aktif');
-            $table->date('tgl_tutup');
+            $table->date('tgl_tutup')->nullable();
             $table->boolean('status');
             $table->timestamps();
         });

@@ -24,8 +24,14 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button class="ml-3">
+        <div class="flex items-center justify-between mt-4">
+            <a href="{{ route('register') }}">
+                <x-secondary-button>
+                    {{ __('Register') }}
+                </x-primary-button>
+            </a>
+
+            <x-primary-button>
                 {{ __('Log in') }}
             </x-primary-button>
         </div>

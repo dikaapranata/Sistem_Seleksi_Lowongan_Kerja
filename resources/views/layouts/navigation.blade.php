@@ -52,9 +52,11 @@
                     </x-slot>
                 </x-dropdown>
                 @else
-                <x-primary-button class="ml-3">
-                    {{ __('Login') }}
-                </x-primary-button>
+                <a href="{{ route('login') }}">
+                    <x-primary-button class="ml-3">
+                        {{ __('Login') }}
+                    </x-primary-button>
+                </a>
                 @endauth
             </div>
 
