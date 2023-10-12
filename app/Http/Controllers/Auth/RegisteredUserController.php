@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -30,16 +31,20 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-
         $user = User::create([
-            'name' => $request->name,
             'email' => $request->email,
+            'noktp' => $request->noktp,
+            'nama' => $request->nama,
             'password' => Hash::make($request->password),
+            'email' => $request->email,
+            'jenis_kelamin' => $request->jenis_kelamin,
+            'tempat_lahir' => $request->tempat_lahir,
+            'tanggal_lahir' => $request->tanggal_lahir,
+            'kota' => $request->kota,
+            'no_telp' => $request->no_telp,
+            'tgl_daftar' => Carbon::today(),
+            'foto' => $request->file('foto')->store('foto-pencaker'),
+            'file_ktp' => $request->file('file_ktp')->store('file-ktp')
         ]);
 
         event(new Registered($user));
@@ -47,5 +52,7 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
+
+        // return redirect('login')->with('status', 'Berhasil daftar sebagai pelamar, silahkan login!');
     }
 }

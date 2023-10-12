@@ -10,11 +10,20 @@ class LokerController extends Controller
 {
     public function index(): View
     {
-        // $news = DB::table('news')->where('is_publish', true)->whereNull('deleted_at')->orderBy('created_at')->get();
         $lokers = Loker::all();
 
         return view('loker', [
             'lokers' => $lokers
+        ]);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Loker $loker): View
+    {
+        return view('detail-loker', [
+            'loker' => $loker
         ]);
     }
 }

@@ -42,11 +42,11 @@
         <div class="mt-4">
             <x-input-label for="email" :value="__('Jenis Kelamin')" />
             <div class="flex items-center pl-4 border border-gray-200 rounded w-1/2 mb-1">
-                <input checked id="kel-lk" type="radio" value="{{ App\Models\Pencaker::KEL_LK }}" name="jenis_kelamin" class="w-4 h-4 text-gray-700 bg-gray-100 border-gray-300 focus:ring-gray-500 focus:ring-2">
+                <input checked id="kel-lk" type="radio" value="{{ App\Models\User::KEL_LK }}" name="jenis_kelamin" class="w-4 h-4 text-gray-700 bg-gray-100 border-gray-300 focus:ring-gray-500 focus:ring-2">
                 <label for="kel-lk" class="w-full py-2 ml-2 text-sm font-medium text-gray-900">Laki-laki</label>
             </div>
             <div class="flex items-center pl-4 border border-gray-200 rounded w-1/2">
-                <input id="kel-pr" type="radio" value="{{ App\Models\Pencaker::KEL_PR }}" name="jenis_kelamin" class="w-4 h-4 text-gray-700 bg-gray-100 border-gray-300 focus:ring-gray-500 focus:ring-2">
+                <input id="kel-pr" type="radio" value="{{ App\Models\User::KEL_PR }}" name="jenis_kelamin" class="w-4 h-4 text-gray-700 bg-gray-100 border-gray-300 focus:ring-gray-500 focus:ring-2">
                 <label for="kel-pr" class="w-full py-2 ml-2 text-sm font-medium text-gray-900">Perempuan</label>
             </div>
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
