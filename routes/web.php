@@ -21,6 +21,8 @@ Route::get('/dashboard', function () {
 
 Route::get('/loker', [LokerController::class, 'index'])->name('loker');
 Route::get('/loker/{loker:idloker}', [LokerController::class, 'show'])->name('loker.show');
+Route::get('/loker/{loker:idloker}/apply', [LokerController::class, 'apply'])->name('loker.apply');
+Route::get('/loker/{loker:idloker}/like', [LokerController::class, 'like'])->name('loker.like');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

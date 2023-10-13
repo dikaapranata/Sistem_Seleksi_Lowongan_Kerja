@@ -1,12 +1,45 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="font-semibold text-xl text-gray-800 leading-tight">
+
+    <div class="bg-white flex justify-between max-w-7xl my-7 mx-8 py-8 px-6 rounded-md shadow-md">
+        <div>
+            <div class="text-sky-600 font-semibold text-lg">
+                {{ $loker->nama }}
+            </div>
+            <div class="font-medium">
+                {{ $loker->idperusahaan }}
+            </div>
+            <div class="text-sm text-gray-500 mt-3">
+                {{ 'Untill ' . \Carbon\Carbon::parse($loker->tgl_aktif)->locale('id')->isoFormat('D MMMM Y') }}
+            </div>
         </div>
-    </x-slot>
+        <div class="flex flex-col">
+            <a href="{{ route('loker.apply', $loker->idloker) }}">
+                <x-primary-button class="bg-sky-700">
+                    {{ __('Aplly') }}
+                </x-primary-button>
+            </a>
+            <a href="#" class="text-pink-500 text-xl mt-1">
+                <x-secondary-button class="bg-pink-500 text-white hover:bg-pink-400 normal-case">
+                    <i class="fa-regular fa-heart mr-2"></i> Like
+                    <i class="fa-solid fa-heart mr-2"></i> Unlike
+                </x-secondary-button>
+            </a>
+        </div>
+    </div>
 
-
-    <div class="py-12">
-        {{ $loker }}
-
+    <div class="bg-white max-w-7xl my-7 mx-8 py-8 px-6 rounded-md shadow-md">
+        <div>
+            <h4 class="font-bold text-xl">Informasi Lainnya</h4>
+            <ul class="list-disc list-inside">
+                <li>{{ $loker->usia_min . '-' . $loker->usia_max }}</li>
+                <li><i class="fa-solid fa-dollar-sign"></i> {{ abbreviateNumber($loker->gaji_min) . ' - ' . abbreviateNumber($loker->gaji_max) }}</li>
+            </ul>
+        </div>
+        <div class="mt-8">
+            <h4 class=" font-bold text-xl">Contact Person</h4>
+            <p><i class="fa-solid fa-user mr-3"></i> {{ $loker->nama_cp }}</p>
+            <p><i class="fa-solid fa-envelope mr-3"></i> {{ $loker->email_cp }}</p>
+            <p><i class="fa-solid fa-phone mr-3"></i> {{ $loker->no_telp_cp }}</p>
+        </div>
     </div>
 </x-app-layout>

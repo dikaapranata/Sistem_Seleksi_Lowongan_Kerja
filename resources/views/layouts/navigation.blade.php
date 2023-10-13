@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('loker')" :active="request()->routeIs('loker')">
+                    <x-nav-link :href="route('loker')" :active="request()->is('loker' ,'loker/*')">
                         {{ __('Loker') }}
                     </x-nav-link>
                 </div>
@@ -26,8 +26,8 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <img class="w-10 h-10" src="{{ asset('storage/' . Auth::user()->foto)  }}" alt="">
                 @auth
+                <img class="w-10 h-10" src="{{ asset('storage/' . Auth::user()->foto)  }}" alt="">
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">

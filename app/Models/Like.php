@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Loker extends Model
+class Like extends Model
 {
     use HasFactory;
 
@@ -17,8 +17,13 @@ class Loker extends Model
      */
     protected $guarded = [];
 
-    public function likes(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany(Like::class);
+        return $this->belongsTo(User::class);
+    }
+
+    public function loker(): BelongsTo
+    {
+        return $this->belongsTo(Loker::class);
     }
 }

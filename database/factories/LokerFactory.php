@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Loker>
@@ -16,9 +18,11 @@ class LokerFactory extends Factory
      */
     public function definition(): array
     {
+        $loker_name = fake()->name();
         return [
+            'idloker' => Str::slug($loker_name),
             'idperusahaan' => fake()->name(),
-            'nama' => fake()->name(),
+            'nama' => $loker_name,
             'tipe' => fake()->word(),
             'usia_min' => fake()->numberBetween(17,20),
             'usia_max' => fake()->numberBetween(30,50),

@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->hasMany(Loker::class);
     }
 
+    public function likes(): HasMany
+    {
+        return $this->hasMany(Like::class);
+    }
+
     public function foto(): string
     {
         return Storage::url($this->foto);
