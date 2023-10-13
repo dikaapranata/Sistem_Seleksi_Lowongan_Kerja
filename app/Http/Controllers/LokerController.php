@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Like;
 use App\Models\Loker;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
@@ -23,21 +24,22 @@ class LokerController extends Controller
      */
     public function show(Loker $loker): View
     {
-        $userEmail = auth()->user()->email;
-        $idloker = $loker->idloker;
+        $liked = null;
 
-        // dd($userEmail . ' - ' . )
+        if (auth()->check()){
+            $userEmail = auth()->user()->email;
+            $idloker = $loker->idloker;
 
-        $liked = User::where('email', $userEmail)
-            ->whereHas('likes', function ($query) use ($idloker) {
-                $query->where('loker_idloker', $idloker);
-            })
-            ->exists();
-
-        dd($liked);
+            $liked = User::where('email', $userEmail)
+                ->whereHas('likes', function ($query) use ($idloker) {
+                    $query->where('loker_idloker', $idloker);
+                })
+                ->exists();
+        }
 
         return view('detail-loker', [
-            'loker' => $loker
+            'loker' => $loker,
+            'liked' => $liked
         ]);
     }
 
@@ -49,11 +51,30 @@ class LokerController extends Controller
         dd(auth()->user()->nama);
     }
 
-    public function like()
+    public function like(Loker $loker)
     {
-        if (!auth()->check()) {
-            dd(' ga login dia bang');
+        $userKtp = auth()->user()->noktp;
+
+        $like = Like::where('user_noktp', $userKtp)
+                    ->where('loker_idloker', $loker->idloker)
+                    ->first();
+
+        if ($like) {
+            $like->delete();
         }
-        dd(auth()->user()->nama);
+        else {
+            Like::create([
+                'user_noktp' => auth()->id(),
+                'loker_idloker' => $loker->idloker,
+            ]);
+        }
+
+        return redirect()->back();
+    }
+
+    public function search(Request $request): View
+    {
+        dd($request->search);
+        // $loker = Loker::
     }
 }

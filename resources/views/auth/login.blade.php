@@ -1,7 +1,9 @@
 <x-guest-layout>
-    <div class="font-semibold text-3xl mb-3 text-center">
-        Login
-    </div>
+    <a href="{{ route('loker') }}">
+        <div class="font-semibold text-3xl mb-3 text-center">
+            Login
+        </div>
+    </a>
 
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />

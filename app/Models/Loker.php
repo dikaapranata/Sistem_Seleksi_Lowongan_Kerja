@@ -10,6 +10,10 @@ class Loker extends Model
 {
     use HasFactory;
 
+    protected $primaryKey = 'idloker';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     /**
      * The attributes that aren't mass assignable.
      *

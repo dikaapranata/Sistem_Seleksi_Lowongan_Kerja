@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -21,8 +22,11 @@ Route::get('/dashboard', function () {
 
 Route::get('/loker', [LokerController::class, 'index'])->name('loker');
 Route::get('/loker/{loker:idloker}', [LokerController::class, 'show'])->name('loker.show');
-Route::get('/loker/{loker:idloker}/apply', [LokerController::class, 'apply'])->name('loker.apply');
-Route::get('/loker/{loker:idloker}/like', [LokerController::class, 'like'])->name('loker.like');
+Route::get('/loker/search', [LokerController::class, 'search'])->name('loker.search');
+Route::get('/loker/{loker:idloker}/apply', [LokerController::class, 'apply'])->name('loker.apply')->middleware('auth');
+Route::get('/loker/{loker:idloker}/like', [LokerController::class, 'like'])->name('loker.like')->middleware('auth');
+
+Route::get('/like', [LikeController::class, 'index'])->name('like')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

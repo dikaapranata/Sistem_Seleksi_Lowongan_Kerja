@@ -22,6 +22,14 @@
                         {{ __('Loker') }}
                     </x-nav-link>
                 </div>
+
+                @auth
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('like')" :active="request()->is('like')">
+                        {{ __('Liked') }}
+                    </x-nav-link>
+                </div>
+                @endauth
             </div>
 
             <!-- Settings Dropdown -->
@@ -42,10 +50,6 @@
                     </x-slot>
 
                     <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
-
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

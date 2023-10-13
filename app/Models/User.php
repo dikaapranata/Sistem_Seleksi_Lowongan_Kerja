@@ -14,6 +14,9 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $primaryKey = 'noktp';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
     /**
      * The attributes that aren't mass assignable.
      *
@@ -43,7 +46,7 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function loker(): HasMany
+    public function lokers(): HasMany
     {
         return $this->hasMany(Loker::class);
     }

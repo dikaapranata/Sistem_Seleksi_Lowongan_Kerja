@@ -1,19 +1,14 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="font-semibold text-xl text-gray-800 leading-tight">
-            <form action="{{ route('loker.search') }}">
-                <div class="flex items-center">
-                    <i class="fa-solid fa-magnifying-glass mr-3"></i>
-                    <x-text-input id="search" class="block mt-1 w-full" type="search" name="search" placeholder="Search lowongan pekerjaan" :value="old('search')" required autofocus autocomplete="username" />
-                </div>
-            </form>
+            Like
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @foreach ($lokers as $loker)
-                <a href="{{ route('loker.show', $loker->idloker) }}" class="">
+                <a href="{{ route('loker.show', $loker->idloker) }}">
                     <div
                         class="bg-white grid grid-cols-4 place-items-center overflow-hidden shadow-sm sm:rounded-lg mb-3 p-6 text-gray-900 hover:bg-gray-200 hover:shadow-inner">
                         <div class="text-base justify-self-start">
