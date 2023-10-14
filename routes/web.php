@@ -21,8 +21,8 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/loker', [LokerController::class, 'index'])->name('loker');
-Route::get('/loker/{loker:idloker}', [LokerController::class, 'show'])->name('loker.show');
 Route::get('/loker/search', [LokerController::class, 'search'])->name('loker.search');
+Route::get('/loker/{loker:idloker}', [LokerController::class, 'show'])->name('loker.show');
 Route::get('/loker/{loker:idloker}/apply', [LokerController::class, 'apply'])->name('loker.apply')->middleware('auth');
 Route::get('/loker/{loker:idloker}/like', [LokerController::class, 'like'])->name('loker.like')->middleware('auth');
 

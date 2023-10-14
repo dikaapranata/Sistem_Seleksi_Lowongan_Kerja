@@ -74,7 +74,26 @@ class LokerController extends Controller
 
     public function search(Request $request): View
     {
-        dd($request->search);
-        // $loker = Loker::
+        $query = Loker::query();
+
+        if ($request->has('nama')){
+            $query->where('nama', 'like', '%' . $request->nama . '%');
+        }
+
+        if ($request->has('usia')){
+            $query->where('usia_max', '>=' , $request->usia)
+                ->where('usia_min', '<=' , $request->usia);
+        }
+
+        if ($request->has('gaji')){
+            $query->where('gaji_max', '>=' , $request->gaji)
+                ->where('gaji_min', '<=' , $request->gaji);
+        }
+
+        $lokers = $query->get();
+
+        return view('loker', [
+            'lokers' => $lokers
+        ]);
     }
 }
