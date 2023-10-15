@@ -66,6 +66,23 @@
             <x-input-error :messages="$errors->get('tanggal_lahir')" class="mt-2" />
         </div>
 
+        <!-- Pendidikan -->
+        <div class="mt-4">
+            <x-input-label for="pendidikan" :value="__('Pendidikan')" />
+            <select name="pendidikan" id="pendidikan" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
+                <option value="" selected>Pilih pendidikan terakhir</option>
+                <option value="{{ App\Models\User::PEND_SMA }}">SMA</option>
+                <option value="{{ App\Models\User::PEND_D1 }}">D-1</option>
+                <option value="{{ App\Models\User::PEND_D2 }}">D-2</option>
+                <option value="{{ App\Models\User::PEND_D3 }}">D-3</option>
+                <option value="{{ App\Models\User::PEND_D4 }}">D-4</option>
+                <option value="{{ App\Models\User::PEND_S1 }}">S-1</option>
+                <option value="{{ App\Models\User::PEND_S2 }}">S-2</option>
+                <option value="{{ App\Models\User::PEND_S3 }}">S-3</option>
+            </select>
+            <x-input-error :messages="$errors->get('pendidikan')" class="mt-2" />
+        </div>
+
         <!-- Kota -->
         <div class="mt-4">
             <x-input-label for="kota" :value="__('Kota')" />

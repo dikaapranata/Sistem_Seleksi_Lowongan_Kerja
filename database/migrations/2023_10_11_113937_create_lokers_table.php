@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('idperusahaan');
             $table->string('nama');
             $table->string('tipe');
+            $table->string('pendidikan');
             $table->integer('usia_min');
             $table->integer('usia_max');
             $table->integer('gaji_min');

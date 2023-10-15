@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('tanggal_lahir');
             $table->string('kota');
             $table->string('email')->unique();
+            $table->string('pendidikan');
             $table->string('no_telp');
             $table->text('foto');
             $table->date('tgl_daftar');

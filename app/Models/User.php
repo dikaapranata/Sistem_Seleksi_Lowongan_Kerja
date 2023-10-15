@@ -25,8 +25,16 @@ class User extends Authenticatable
     protected $guarded = [];
 
     public const KEL_LK = 1;
-
     public const KEL_PR = 0;
+
+    public const PEND_SMA = 'SMA';
+    public const PEND_D1 = 'D1';
+    public const PEND_D2 = 'D2';
+    public const PEND_D3 = 'D3';
+    public const PEND_D4 = 'D4';
+    public const PEND_S1 = 'S1';
+    public const PEND_S2 = 'S2';
+    public const PEND_S3 = 'S3';
 
     /**
      * The attributes that should be hidden for serialization.
@@ -54,6 +62,11 @@ class User extends Authenticatable
     public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function apply_lokers(): HasMany
+    {
+        return $this->hasMany(ApplyLoker::class);
     }
 
     public function foto(): string

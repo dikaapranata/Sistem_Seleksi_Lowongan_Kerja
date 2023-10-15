@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'tempat_lahir' => $request->tempat_lahir,
             'tanggal_lahir' => $request->tanggal_lahir,
+            'pendidikan' => $request->pendidikan,
             'kota' => $request->kota,
             'no_telp' => $request->no_telp,
             'tgl_daftar' => Carbon::today(),

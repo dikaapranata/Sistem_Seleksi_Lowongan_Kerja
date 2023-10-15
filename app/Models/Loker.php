@@ -25,4 +25,9 @@ class Loker extends Model
     {
         return $this->hasMany(Like::class);
     }
+
+    public function apply_loker(): HasMany
+    {
+        return $this->hasMany(ApplyLoker::class);
+    }
 }
