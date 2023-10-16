@@ -1,16 +1,19 @@
 <x-app-layout>
     @if (session('status'))
-    <div class="max-w-7xl mx-8 mt-3 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+    <x-session-status>
         {{ session('status') }}
-    </div>
+    </x-session-status>
     @endif
     <div class="bg-white flex justify-between max-w-7xl my-7 mx-8 py-8 px-6 rounded-md shadow-md">
         <div>
             <div class="text-sky-600 font-semibold text-lg">
-                {{ $loker->nama }}
+                {{ $loker->nama }} <span class="text-gray-500 text-sm">{{ ' - ' . $loker->tipe }}</span>
             </div>
             <div class="font-medium">
                 {{ $loker->idperusahaan }}
+            </div>
+            <div class="text-gray-500 text-sm">
+                IDR {{ abbreviateNumber($loker->gaji_min) . ' - ' . abbreviateNumber($loker->gaji_max) }}/Bulan
             </div>
             @if ($isClosed)
             <div class="text-sm text-gray-500 mt-3">
@@ -55,11 +58,9 @@
 
     <div class="bg-white max-w-7xl my-7 mx-8 py-8 px-6 rounded-md shadow-md">
         <div>
-            <h4 class="font-bold text-xl">Informasi Lainnya</h4>
+            <h4 class="font-bold text-xl">Persyaratan</h4>
             <ul class="list-disc list-inside">
-                <li>{{ $loker->usia_min . '-' . $loker->usia_max }}</li>
-                <li><i class="fa-solid fa-dollar-sign"></i>
-                    {{ abbreviateNumber($loker->gaji_min) . ' - ' . abbreviateNumber($loker->gaji_max) }}</li>
+                <li>Usia {{ $loker->usia_min . ' - ' . $loker->usia_max }} tahun</li>
                 <li>Pendidikan {{ $loker->pendidikan }}</li>
             </ul>
         </div>

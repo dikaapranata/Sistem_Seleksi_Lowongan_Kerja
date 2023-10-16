@@ -5,9 +5,9 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            @foreach ($lokers as $loker)
+            @forelse ($lokers as $loker)
                 <a href="{{ route('loker.show', $loker->idloker) }}">
                     <div
                         class="bg-white grid grid-cols-4 place-items-center overflow-hidden shadow-sm sm:rounded-lg mb-3 p-6 text-gray-900 hover:bg-gray-200 hover:shadow-inner">
@@ -30,7 +30,11 @@
                         </div>
                     </div>
                 </a>
-            @endforeach
+            @empty
+                <div class="bg-white font-semibold overflow-hidden shadow-sm sm:rounded-lg mb-3 p-6 text-gray-900">
+                    Data Not Found!
+                </div>
+            @endforelse
         </div>
     </div>
 </x-app-layout>

@@ -14,6 +14,9 @@
                         placeholder="Gaji" :value="request()->gaji" />
                     <select name="pendidikan" id="pendidikan" class="block w-fit text-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                         <option value="" selected>Pendidikan</option>
+                        @auth
+                        <option value="{{ auth()->user()->pendidikan }}" {{ request()->pendidikan == auth()->user()->pendidikan ? 'selected' : '' }}>Pendidikan anda {{ '(' . auth()->user()->pendidikan . ')' }}</option>
+                        @endauth
                         <option value="{{ App\Models\User::PEND_SMA }}" {{ request()->pendidikan == App\Models\User::PEND_SMA ? 'selected' : '' }}>SMA</option>
                         <option value="{{ App\Models\User::PEND_D1 }}" {{ request()->pendidikan == App\Models\User::PEND_D1 ? 'selected' : '' }}>D-1</option>
                         <option value="{{ App\Models\User::PEND_D2 }}" {{ request()->pendidikan == App\Models\User::PEND_D2 ? 'selected' : '' }}>D-2</option>
@@ -31,7 +34,7 @@
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @forelse ($lokers as $loker)
                 <a href="{{ route('loker.show', $loker->idloker) }}" class="">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ApplyLoker;
 use App\Models\Like;
 use App\Models\Loker;
+use App\Models\TahapanApply;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
@@ -83,14 +84,21 @@ class LokerController extends Controller
 
         if ($apply_loker) {
             $apply_loker->delete();
+            return redirect()->back();
         } else {
-            ApplyLoker::create([
+            $create_apply_loker = ApplyLoker::create([
                 'user_noktp' => $userId,
                 'loker_idloker' => $lokerId
             ]);
+
+            TahapanApply::create([
+                'idapply' => $create_apply_loker->idapply,
+                'idtahapan' => 1,
+                'nilai' => 1
+            ]);
         }
 
-        return redirect()->back();
+        return redirect()->route('applied')->with('status', 'Berhasil apply lowongan!');
     }
 
     public function like(Loker $loker)

@@ -29,6 +29,12 @@
                         {{ __('Liked') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('applied')" :active="request()->is('applied')">
+                        {{ __('Applied') }}
+                    </x-nav-link>
+                </div>
                 @endauth
             </div>
 

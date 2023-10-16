@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\ApplyLokerController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LokerController;
 use App\Http\Controllers\ProfileController;
+use App\Models\ApplyLoker;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +29,8 @@ Route::get('/loker/{loker:idloker}/apply', [LokerController::class, 'apply'])->n
 Route::get('/loker/{loker:idloker}/like', [LokerController::class, 'like'])->name('loker.like')->middleware('auth');
 
 Route::get('/like', [LikeController::class, 'index'])->name('like')->middleware('auth');
+
+Route::get('/applied', [ApplyLokerController::class, 'index'])->name('applied')->middleware('auth');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

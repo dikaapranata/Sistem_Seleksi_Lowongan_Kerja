@@ -11,7 +11,6 @@ class LikeController extends Controller
 {
     public function index(): View
     {
-        // dd(auth()->user()->likes()->with('loker')->get()->pluck('lokers')->flatten());
         $lokers = Loker::whereHas('likes', function ($query) {
             $query->where('user_noktp', auth()->id());
         })->get();
