@@ -8,7 +8,7 @@ git clone https://github.com/dikaapranata/Sistem_Seleksi_Lowongan_Kerja.git
 ```
 2. Get into the project
 ```
-cd mini-project-pbp-dika
+cd Sistem_Seleksi_Lowongan_Kerja
 ```
 3. Install Composer Dependencies
 ```
