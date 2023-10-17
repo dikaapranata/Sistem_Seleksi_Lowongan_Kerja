@@ -49,7 +49,7 @@
                 <input id="kel-pr" type="radio" value="{{ App\Models\User::KEL_PR }}" name="jenis_kelamin" class="w-4 h-4 text-gray-700 bg-gray-100 border-gray-300 focus:ring-gray-500 focus:ring-2">
                 <label for="kel-pr" class="w-full py-2 ml-2 text-sm font-medium text-gray-900">Perempuan</label>
             </div>
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-error :messages="$errors->get('jenis_kelamin')" class="mt-2" />
         </div>
 
         <!-- Tempat Lahir -->
@@ -71,14 +71,14 @@
             <x-input-label for="pendidikan" :value="__('Pendidikan')" />
             <select name="pendidikan" id="pendidikan" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required>
                 <option value="" selected>Pilih pendidikan terakhir</option>
-                <option value="{{ App\Models\User::PEND_SMA }}">SMA</option>
-                <option value="{{ App\Models\User::PEND_D1 }}">D-1</option>
-                <option value="{{ App\Models\User::PEND_D2 }}">D-2</option>
-                <option value="{{ App\Models\User::PEND_D3 }}">D-3</option>
-                <option value="{{ App\Models\User::PEND_D4 }}">D-4</option>
-                <option value="{{ App\Models\User::PEND_S1 }}">S-1</option>
-                <option value="{{ App\Models\User::PEND_S2 }}">S-2</option>
-                <option value="{{ App\Models\User::PEND_S3 }}">S-3</option>
+                <option value="{{ App\Models\User::PEND_SMA }}" {{ old('pendidikan') == App\Models\User::PEND_SMA ? 'selected' : '' }}>SMA</option>
+                <option value="{{ App\Models\User::PEND_D1 }}" {{ old('pendidikan') == App\Models\User::PEND_D1 ? 'selected' : '' }}>D-1</option>
+                <option value="{{ App\Models\User::PEND_D2 }}" {{ old('pendidikan') == App\Models\User::PEND_D2 ? 'selected' : '' }}>D-2</option>
+                <option value="{{ App\Models\User::PEND_D3 }}" {{ old('pendidikan') == App\Models\User::PEND_D3 ? 'selected' : '' }}>D-3</option>
+                <option value="{{ App\Models\User::PEND_D4 }}" {{ old('pendidikan') == App\Models\User::PEND_D4 ? 'selected' : '' }}>D-4</option>
+                <option value="{{ App\Models\User::PEND_S1 }}" {{ old('pendidikan') == App\Models\User::PEND_S1 ? 'selected' : '' }}>S-1</option>
+                <option value="{{ App\Models\User::PEND_S2 }}" {{ old('pendidikan') == App\Models\User::PEND_S2 ? 'selected' : '' }}>S-2</option>
+                <option value="{{ App\Models\User::PEND_S3 }}" {{ old('pendidikan') == App\Models\User::PEND_S3 ? 'selected' : '' }}>S-3</option>
             </select>
             <x-input-error :messages="$errors->get('pendidikan')" class="mt-2" />
         </div>

@@ -31,22 +31,27 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $user = User::create([
-            'email' => $request->email,
-            'noktp' => $request->noktp,
-            'nama' => $request->nama,
-            'password' => Hash::make($request->password),
-            'email' => $request->email,
-            'jenis_kelamin' => $request->jenis_kelamin,
-            'tempat_lahir' => $request->tempat_lahir,
-            'tanggal_lahir' => $request->tanggal_lahir,
-            'pendidikan' => $request->pendidikan,
-            'kota' => $request->kota,
-            'no_telp' => $request->no_telp,
+
+        $validatedData = $request->validate([
+            'email' => 'required|email|unique:users,email',
+            'noktp' => 'required|string',
+            'nama' => 'required|string',
+            'password' => 'required|min:8',
+            'jenis_kelamin' => 'required|boolean',
+            'tempat_lahir' => 'required|string',
+            'tanggal_lahir' => 'required|date',
+            'pendidikan' => 'required|string',
+            'kota' => 'required|string',
+            'no_telp' => 'required|string',
             'tgl_daftar' => Carbon::today(),
-            'foto' => $request->file('foto')->store('foto-pencaker'),
-            'file_ktp' => $request->file('file_ktp')->store('file-ktp')
         ]);
+
+        $validatedData['password'] = Hash::make($request->password);
+        $validatedData['tgl_daftar'] = Carbon::today();
+        $validatedData['foto'] = $request->file('foto')->store('foto-pencaker');
+        $validatedData['file_ktp'] = $request->file('file_ktp')->store('file-ktp');
+
+        $user = User::create($validatedData);
 
         event(new Registered($user));
 
