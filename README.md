@@ -4,7 +4,7 @@
 
 1. Clone the repo
 ```
-git clone https://github.com/RatriaSeza/mini-project-pbp-dika.git
+git clone https://github.com/dikaapranata/Sistem_Seleksi_Lowongan_Kerja.git
 ```
 2. Get into the project
 ```
