@@ -20,7 +20,7 @@ npm install
 ```
 5. Create a copy of .env file
 ```
-cp .env.example
+cp .env.example .env
 ```
 6. Generate app encryption key
 ```
@@ -44,5 +44,12 @@ npm run build
 ```
 php artisan storage:link
 ```
-
+13. create dummy data
+```
+php artisan tinker
+```
+14. generate dummy data
+```
+App\Models\Loker::factory()->count(100)->create()
+```
 # Sistem_Seleksi_Lowongan_Kerja
