@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('apply_lokers', function (Blueprint $table) {
             $table->id('idapply');
             $table->string('user_noktp');
-            $table->foreign('user_noktp')->references('noktp')->on('users');
+            $table->foreign('user_noktp')->references('noktp')->on('users')->onDelete('cascade');
             $table->string('loker_idloker');
-            $table->foreign('loker_idloker')->references('idloker')->on('lokers');
+            $table->foreign('loker_idloker')->references('idloker')->on('lokers')->onDelete('cascade');
             $table->timestamps();
         });
     }

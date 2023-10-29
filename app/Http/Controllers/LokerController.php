@@ -2,27 +2,89 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ApplyLoker;
-use App\Models\Like;
-use App\Models\Loker;
-use App\Models\TahapanApply;
-use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Contracts\View\View;
+use App\Models\Like;
+use App\Models\User;
+use App\Models\Loker;
+use App\Models\ApplyLoker;
+use App\Models\TahapanApply;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\View\View;
 use Illuminate\Notifications\Action;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class LokerController extends Controller
 {
+
+    // public function index(): View
+    // {
+    //     $lokers = Loker::whereDate('tgl_aktif', '>', now())->get();
+    
+    //     // Calculate the difference in days for each Loker
+    //     $lokers = $lokers->map(function ($loker) {
+    //         $loker->sisa_hari = now()->diffInDays($loker->tgl_aktif);
+    //         return $loker;
+    //     });
+    
+    //     // Sort Lokers by the lowest sisa hari
+    //     $lokers = $lokers->sortBy('sisa_hari');
+    
+    //     // Paginate the sorted collection
+    //     $currentPage = LengthAwarePaginator::resolveCurrentPage();
+    //     $perPage = 10; // Change 10 to the number of items you want per page
+    //     $currentItems = $lokers->slice(($currentPage - 1) * $perPage, $perPage);
+    //     $lokers = new LengthAwarePaginator($currentItems, $lokers->count(), $perPage);
+    //     $lokers->setPath(request()->url());
+    
+    //     return view('loker', [
+    //         'lokers' => $lokers,
+    //         'query' => ''
+    //     ]);
+    // }
     public function index(): View
-    {
-        $lokers = Loker::all();
+{
+    // Ambil semua lowongan pekerjaan
+    $lokers = Loker::get();
 
-        return view('loker', [
-            'lokers' => $lokers
-        ]);
-    }
+    // Pisahkan lowongan pekerjaan yang aktif dan yang tidak aktif
+    $activeLokers = $lokers->filter(function ($loker) {
+        return now()->isBefore($loker->tgl_aktif);
+    });
+    $activeLokers = $activeLokers->sortBy(function($loker) {
+        return now()->diffInDays($loker->tgl_aktif);
+    });
 
+    $inactiveLokers = $lokers->filter(function ($loker) {
+        return now()->isAfter($loker->tgl_aktif);
+    });
+
+    // Gabungkan kembali dengan urutan yang benar
+    $sortedLokers = $activeLokers->merge($inactiveLokers);
+
+    // Memisahkan data ke dalam halaman
+    $currentPage = LengthAwarePaginator::resolveCurrentPage();
+    $perPage = 10; // Ubah ke jumlah yang diinginkan per halaman
+    $currentItems = $sortedLokers->slice(($currentPage - 1) * $perPage, $perPage);
+    $lokers = new LengthAwarePaginator($currentItems, $sortedLokers->count(), $perPage);
+    $lokers->setPath(request()->url());
+
+    return view('loker', [
+        'lokers' => $lokers,
+        'query' => ''
+    ]);
+}
+
+//     public function index(): View
+// {
+//     $lokers = Loker::paginate(10); // Change 10 to the number of items you want per page
+
+//     return view('loker', [
+//         'lokers' => $lokers
+//     ]);
+// }
+
+    
+    
     /**
      * Display the specified resource.
      */
@@ -143,10 +205,42 @@ class LokerController extends Controller
             $query->where('pendidikan', $request->pendidikan);
         }
 
-        $lokers = $query->get();
+        //search by tipe
+        if ($request->filled('tipe')) {
+            $query->where('tipe', $request->tipe);
+        }
 
-        return view('loker', [
-            'lokers' => $lokers
-        ]);
+    // Calculate the difference in days for each Loker
+    $lokers = $query->get();
+
+    // Pisahkan lowongan pekerjaan yang aktif dan yang tidak aktif
+    $activeLokers = $lokers->filter(function ($loker) {
+        return now()->isBefore($loker->tgl_aktif);
+    });
+    $activeLokers = $activeLokers->sortBy(function($loker) {
+        return now()->diffInDays($loker->tgl_aktif);
+    });
+
+    $inactiveLokers = $lokers->filter(function ($loker) {
+        return now()->isAfter($loker->tgl_aktif);
+    });
+
+    // Gabungkan kembali dengan urutan yang benar
+    $lokers = $activeLokers->merge($inactiveLokers);
+
+    // Sort Lokers by the lowest sisa hari
+    $lokers = $lokers->sortBy('sisa_hari');
+
+    // Paginate the sorted collection
+    $currentPage = LengthAwarePaginator::resolveCurrentPage();
+    $perPage = 10; // Change 10 to the number of items you want per page
+    $currentItems = $lokers->slice(($currentPage - 1) * $perPage, $perPage);
+    $lokers = new LengthAwarePaginator($currentItems, $lokers->count(), $perPage);
+    $lokers->setPath(request()->url());
+
+    return view('loker', [
+        'lokers' => $lokers,
+        'query' => $request->query()
+    ]);
     }
 }

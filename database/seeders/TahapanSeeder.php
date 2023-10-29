@@ -14,17 +14,17 @@ class TahapanSeeder extends Seeder
     public function run(): void
     {
         DB::table('tahapans')->insert([
-            'id' => 1,
+            'idtahapan' => 1,
             'nama' => 'Menunggu seleksi administrasi',
         ]);
 
         DB::table('tahapans')->insert([
-            'id' => 2,
+            'idtahapan' => 2,
             'nama' => 'Seleksi administrasi',
         ]);
 
         DB::table('tahapans')->insert([
-            'id' => 3,
+            'idtahapan' => 3,
             'nama' => 'Seleksi wawancara'
         ]);
     }

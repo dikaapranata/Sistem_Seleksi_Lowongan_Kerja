@@ -30,16 +30,24 @@
             <x-input-error :messages="$errors->get('password')" class="mt-2" />
         </div>
 
+        
+            
         <div class="flex items-center justify-between mt-4">
-            <a href="{{ route('register') }}">
+            <a href="{{ route('loker') }}">
                 <x-secondary-button>
-                    {{ __('Register') }}
+                    {{ __('Back') }}
                 </x-primary-button>
             </a>
 
             <x-primary-button>
                 {{ __('Log in') }}
             </x-primary-button>
+        </div>
+
+        <div class="text-center">
+            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
+                {{ __('If you dont have an account yet, Click Me') }}
+            </a>
         </div>
     </form>
 </x-guest-layout>

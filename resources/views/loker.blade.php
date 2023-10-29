@@ -12,6 +12,8 @@
                         placeholder="Usia" :value="request()->usia" />
                     <x-text-input id="gaji" class="block w-fit text-sm placeholder:text-sm" type="number" name="gaji"
                         placeholder="Gaji" :value="request()->gaji" />
+                    <x-text-input id="tipe" class="block w-fit text-sm placeholder:text-sm" type="search" name="tipe"
+                        placeholder="Tipe" :value="request()->tipe" />
                     <select name="pendidikan" id="pendidikan" class="block w-fit text-sm border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                         <option value="" selected>Pendidikan</option>
                         @auth
@@ -77,4 +79,11 @@
             @endforelse
         </div>
     </div>
+    @foreach($lokers as $loker)
+    
+    @endforeach
+
+    {{ $lokers->appends($query)->links() }}
+
+
 </x-app-layout>

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tahapan_applies', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('idapply');
-            $table->foreign('idapply')->references('idapply')->on('apply_lokers');
+            $table->foreign('idapply')->references('idapply')->on('apply_lokers')->onDelete('cascade');
             $table->unsignedBigInteger('idtahapan');
             $table->foreign('idtahapan')->references('idtahapan')->on('tahapans');
             $table->boolean('nilai');

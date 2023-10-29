@@ -18,9 +18,9 @@
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="nama" :value="__('Name')" />
+            <x-text-input id="nama" name="nama" type="text" class="mt-1 block w-full" :value="old('nama', $user->nama)" required autofocus autocomplete="nama" />
+            <x-input-error class="mt-2" :messages="$errors->get('nama')" />
         </div>
 
         <div>
@@ -45,6 +45,13 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        {{-- update noktp --}}
+        <div>
+            <x-input-label for="noktp" :value="__('No KTP')" />
+            <x-text-input id="noktp" name="noktp" type="text" class="mt-1 block w-full" :value="old('noktp', $user->noktp)" required autocomplete="noktp" />
+            <x-input-error class="mt-2" :messages="$errors->get('noktp')" />
         </div>
 
         <div class="flex items-center gap-4">

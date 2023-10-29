@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::get('/', [LokerController::class, 'index'])->name('loker');
 Route::get('/loker', [LokerController::class, 'index'])->name('loker');
 Route::get('/loker/search', [LokerController::class, 'search'])->name('loker.search');
 Route::get('/loker/{loker:idloker}', [LokerController::class, 'show'])->name('loker.show');

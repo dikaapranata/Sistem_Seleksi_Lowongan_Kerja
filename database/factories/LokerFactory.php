@@ -22,12 +22,13 @@ class LokerFactory extends Factory
     {
         $loker_name = fake()->name();
         $pendidikan_list = [User::PEND_SMA, User::PEND_D1, User::PEND_D2, User::PEND_D3, User::PEND_D4, User::PEND_S1, User::PEND_S2, User::PEND_S3];
+        $tipe_list = ['hybrid', 'remote', 'offline'];
 
         return [
             'idloker' => Str::slug($loker_name),
             'idperusahaan' => fake()->name(),
             'nama' => $loker_name,
-            'tipe' => fake()->word(),
+            'tipe' => $this->faker->randomElement($tipe_list),
             'usia_min' => fake()->numberBetween(17,20),
             'usia_max' => fake()->numberBetween(30,50),
             'gaji_min' => rand(1000000,10000000),
@@ -43,3 +44,4 @@ class LokerFactory extends Factory
         ];
     }
 }
+
